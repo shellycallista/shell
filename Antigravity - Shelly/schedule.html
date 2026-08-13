@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule | Jadwal Pelajaran & Kegiatan</title>
+    <meta name="description"
+        content="Jadwal pelajaran dan kegiatan sekolah mingguan Shelly Callista di SMA Cinta Kasih Tzu Chi.">
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        'sky-blue': '#38bdf8',
+                        'sky-blue-dark': '#0284c7',
+                        'sky-purple': '#c084fc',
+                        'sky-purple-dark': '#9333ea',
+                    },
+                    backgroundImage: {
+                        'sky-gradient': 'linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(192, 132, 252, 0.15) 50%, rgba(255, 255, 255, 0.9) 100%)',
+                        'sky-gradient-bold': 'linear-gradient(135deg, #ec4899 0%, #9333ea 100%)',
+                        'sky-gradient-text': 'linear-gradient(135deg, #ec4899 0%, #c084fc 100%)',
+                        'glass-card': 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(253, 242, 248, 0.6) 100%)',
+                    },
+                    boxShadow: {
+                        'sky-glow': '0 10px 30px -10px rgba(236, 72, 153, 0.3)',
+                        'purple-glow': '0 10px 30px -10px rgba(192, 132, 252, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans relative overflow-x-hidden">
+
+    <!-- Ambient Background Blobs -->
+    <div
+        class="fixed top-0 left-1/4 w-96 h-96 bg-pink-200/40 rounded-full blur-3xl -z-10 pointer-events-none animate-pulse">
+    </div>
+    <div
+        class="fixed top-1/3 right-1/4 w-[30rem] h-[30rem] bg-purple-200/40 rounded-full blur-3xl -z-10 pointer-events-none">
+    </div>
+    <div class="fixed bottom-10 left-1/3 w-80 h-80 bg-rose-100/50 rounded-full blur-3xl -z-10 pointer-events-none">
+    </div>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 w-full glass-panel shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+            <!-- Brand / Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div
+                    class="w-11 h-11 rounded-xl bg-gradient-to-tr from-pink-500 via-rose-500 to-purple-600 flex items-center justify-center text-white shadow-pink-500/30 shadow-md font-mono font-bold text-lg group-hover:scale-105 transition-transform duration-300">
+                    &lt;/&gt;
+                </div>
+                <div>
+                    <div class="font-bold text-lg leading-tight text-slate-900 flex items-center gap-2">
+                        Developer Hub <span
+                            class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium">Website Portofolio</p>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Menu -->
+            <nav
+                class="hidden md:flex items-center gap-1 bg-slate-100/80 p-1.5 rounded-full border border-slate-200/80">
+                <a href="index.html" id="nav-dashboard"
+                    class="nav-btn px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 flex items-center gap-2 text-slate-600 hover:text-slate-900 hover:bg-white/60">
+                    <i class="fa-solid fa-chart-pie text-xs"></i> Dashboard
+                </a>
+                <a href="profil.html" id="nav-profil"
+                    class="nav-btn px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 flex items-center gap-2 text-slate-600 hover:text-slate-900 hover:bg-white/60">
+                    <i class="fa-solid fa-user-astronaut text-xs"></i> Profil
+                </a>
+                <a href="schedule.html" id="nav-schedule"
+                    class="nav-btn px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 flex items-center gap-2 text-pink-700 bg-white shadow-sm font-bold">
+                    <i class="fa-solid fa-calendar-days text-xs"></i> Schedule
+                </a>
+                <a href="informatika.html" id="nav-informatika"
+                    class="nav-btn px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 flex items-center gap-2 text-slate-600 hover:text-slate-900 hover:bg-white/60">
+                    <i class="fa-solid fa-code text-xs"></i> Informatika
+                </a>
+                <a href="bahasa.html" id="nav-bahasa_indonesia"
+                    class="nav-btn px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 flex items-center gap-2 text-slate-600 hover:text-slate-900 hover:bg-white/60">
+                    <i class="fa-solid fa-book-open text-xs"></i> Bahasa Indonesia
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <div class="flex items-center gap-2 md:hidden">
+                <button onclick="toggleMobileMenu()"
+                    class="p-2.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                    <i class="fa-solid fa-bars text-lg" id="mobile-menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Panel -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-t border-slate-200/80 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2">
+            <a href="index.html"
+                class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-pink-50 hover:text-pink-600 flex items-center gap-3">
+                <i class="fa-solid fa-chart-pie text-sky-500"></i> Dashboard
+            </a>
+            <a href="profil.html"
+                class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-pink-50 hover:text-pink-600 flex items-center gap-3">
+                <i class="fa-solid fa-user-astronaut text-purple-500"></i> Profil Saya
+            </a>
+            <a href="schedule.html"
+                class="w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-pink-600 bg-pink-50 flex items-center gap-3">
+                <i class="fa-solid fa-calendar-days text-pink-500"></i> Schedule
+            </a>
+            <a href="informatika.html"
+                class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-pink-50 hover:text-pink-600 flex items-center gap-3">
+                <i class="fa-solid fa-code text-blue-500"></i> Tugas Informatika
+            </a>
+            <a href="bahasa.html"
+                class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-pink-50 hover:text-pink-600 flex items-center gap-3">
+                <i class="fa-solid fa-book-open text-emerald-500"></i> Tugas Bahasa Indonesia
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- SECTION: SCHEDULE -->
+        <section id="section-schedule" class="space-y-8 animate-fadeIn">
+
+            <!-- Category Header - Decorated with Ambient Blobs & Badges -->
+            <div
+                class="glass-panel bg-white/95 p-6 sm:p-8 rounded-3xl border border-pink-200/80 shadow-lg relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-4 group hover:border-pink-300 transition-all">
+                
+                <div class="absolute -top-10 -right-10 w-48 h-48 bg-pink-400/20 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-400/20 rounded-full blur-2xl pointer-events-none"></div>
+
+                <div class="relative z-10 space-y-2">
+                    <div
+                        class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 text-white text-xs font-bold font-mono shadow-sm animate-pulse">
+                        <i class="fa-solid fa-calendar-days text-[10px]"></i> Timetable & Activity Schedule
+                    </div>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900">
+                        Jadwal Pelajaran & Kegiatan <span class="inline-block animate-bounce">📅</span>
+                    </h1>
+                    <p class="text-sm text-slate-600 font-medium flex flex-wrap items-center gap-2">
+                        <span>SMA Cinta Kasih Tzu Chi</span> • 
+                        <span class="px-2.5 py-0.5 rounded-md bg-purple-100 text-purple-700 font-bold text-xs">Jurusan IPS</span> • 
+                        <span class="px-2.5 py-0.5 rounded-md bg-pink-100 text-pink-700 font-bold text-xs">Shelly Callista ✨</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- 6 GRID ITEMS LAYOUT: 3 GRID ATAS & 3 GRID BAWAH -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- BARIS ATAS (GRID 1, 2, 3) -->
+
+                <!-- 1. SENIN -->
+                <div
+                    class="glass-panel bg-white/95 p-6 rounded-3xl border border-pink-200/70 shadow-md space-y-4 hover:border-pink-300 hover:shadow-pink-500/20 transition-all flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-pink-100 pb-3">
+                            <h3 class="font-extrabold text-slate-900 text-lg flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-pink-500 to-rose-500 text-white flex items-center justify-center text-xs shadow-sm font-extrabold">1</div>
+                                <span>Senin</span>
+                            </h3>
+                            <span
+                                class="text-xs font-mono px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-700 font-extrabold shadow-sm">07:30
+                                - 14:40</span>
+                        </div>
+
+                        <ul class="space-y-2 text-xs sm:text-sm">
+                            <li
+                                class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex justify-between items-center hover:border-pink-300 transition-colors">
+                                <div>
+                                    <span class="font-bold text-slate-800 block">Sosiologi</span>
+                                    <span class="text-slate-500 text-xs">Pak Cornel 3</span>
+                                </div>
+                                <span class="font-mono text-slate-600 text-xs font-semibold">07.30 - 08.15</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex justify-between items-center hover:border-pink-300 transition-colors">
+                                <div>
+                                    <span class="font-bold text-slate-800 block">Sosiologi</span>
+                                    <span class="text-slate-500 text-xs">Pak Cornel 3</span>
+                                </div>
+                                <span class="font-mono text-slate-600 text-xs font-semibold">08.15 - 09.00</span>
+                            </li>
+                            <li
+                                class="p-2 rounded-xl bg-purple-50 border border-purple-200/80 flex justify-between items-center">
+                                <span class="font-bold text-purple-900 text-xs"><i
+                                        class="fa-solid fa-mug-hot text-purple-500 mr-1"></i> Istirahat Pertama</span>
+                                <span class="font-mono text-purple-700 text-xs font-semibold">09.00 - 09.30</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-pink-50/80 border border-pink-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-pink-900 block">Mandarin</span>
+                                    <span class="text-pink-600 text-xs">Laoshi Mulyawan 13</span>
+                                </div>
+                                <span class="font-mono text-pink-700 font-semibold text-xs">09.30 - 10.10</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-pink-50/80 border border-pink-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-pink-900 block">Mandarin</span>
+                                    <span class="text-pink-600 text-xs">Laoshi Mulyawan 13</span>
+                                </div>
+                                <span class="font-mono text-pink-700 font-semibold text-xs">10.10 - 10.50</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-amber-50 border border-amber-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-amber-900 block">Budi Pekerti</span>
+                                    <span class="text-amber-600 text-xs">Bu Suwarni 26</span>
+                                </div>
+                                <span class="font-mono text-amber-700 font-semibold text-xs">10.50 - 11.30</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-emerald-900 block">Budaya Humanis</span>
+                                    <span class="text-emerald-600 text-xs">Segu Iriwaty 9</span>
+                                </div>
+                                <span class="font-mono text-emerald-700 font-semibold text-xs">11.30 - 12.10</span>
+                            </li>
+                            <li
+                                class="p-2 rounded-xl bg-purple-50 border border-purple-200/80 flex justify-between items-center">
+                                <span class="font-bold text-purple-900 text-xs"><i
+                                        class="fa-solid fa-utensils text-purple-500 mr-1"></i> Istirahat Kedua</span>
+                                <span class="font-mono text-purple-700 text-xs font-semibold">12.10 - 12.40</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex justify-between items-center hover:border-pink-300 transition-colors">
+                                <div>
+                                    <span class="font-bold text-slate-800 block">Matematika Wajib</span>
+                                    <span class="text-slate-500 text-xs">Pak Jefri 10</span>
+                                </div>
+                                <span class="font-mono text-slate-600 text-xs font-semibold">12.40 - 13.20</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-indigo-50 border border-indigo-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-indigo-900 block">Ekonomi</span>
+                                    <span class="text-indigo-600 text-xs">Ms Debie 4</span>
+                                </div>
+                                <span class="font-mono text-indigo-700 text-xs font-semibold">13.20 - 14.00</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-indigo-50 border border-indigo-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-indigo-900 block">Ekonomi</span>
+                                    <span class="text-indigo-600 text-xs">Ms Debie 4</span>
+                                </div>
+                                <span class="font-mono text-indigo-700 text-xs font-semibold">14.00 - 14.40</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. SELASA -->
+                <div
+                    class="glass-panel bg-white/95 p-6 rounded-3xl border border-pink-200/70 shadow-md space-y-4 hover:border-pink-300 hover:shadow-purple-500/20 transition-all flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-pink-100 pb-3">
+                            <h3 class="font-extrabold text-slate-900 text-lg flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-purple-500 to-indigo-600 text-white flex items-center justify-center text-xs shadow-sm font-extrabold">2</div>
+                                <span>Selasa</span>
+                            </h3>
+                            <span
+                                class="text-xs font-mono px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-700 font-extrabold shadow-sm">06:45
+                                - 14:30</span>
+                        </div>
+
+                        <ul class="space-y-2 text-xs sm:text-sm">
+                            <li
+                                class="p-2.5 rounded-xl bg-amber-50 border border-amber-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-amber-900 block">Agama</span>
+                                    <span class="text-amber-600 text-xs">Bu Suwarni 26</span>
+                                </div>
+                                <span class="font-mono text-amber-700 font-semibold text-xs">06.45 - 08.15</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-purple-50/80 border border-purple-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-purple-900 block flex items-center gap-1">
+                                        <i class="fa-solid fa-book-open text-purple-500 text-xs"></i> Bahasa Indonesia
+                                    </span>
+                                    <span class="text-purple-600 text-xs">Bu Ruly 17</span>
+                                </div>
+                                <span class="font-mono text-purple-700 font-semibold text-xs">08.15 - 09.45</span>
+                            </li>
+                            <li
+                                class="p-2 rounded-xl bg-purple-50 border border-purple-200/80 flex justify-between items-center">
+                                <span class="font-bold text-purple-900 text-xs"><i
+                                        class="fa-solid fa-mug-hot text-purple-500 mr-1"></i> Istirahat Pertama</span>
+                                <span class="font-mono text-purple-700 text-xs font-semibold">09.45 - 10.05</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-emerald-900 block">Geografi</span>
+                                    <span class="text-emerald-600 text-xs">Pak Fajar 14</span>
+                                </div>
+                                <span class="font-mono text-emerald-700 font-semibold text-xs">10.05 - 11.35</span>
+                            </li>
+                            <li
+                                class="p-2 rounded-xl bg-purple-50 border border-purple-200/80 flex justify-between items-center">
+                                <span class="font-bold text-purple-900 text-xs"><i
+                                        class="fa-solid fa-utensils text-purple-500 mr-1"></i> Istirahat Kedua</span>
+                                <span class="font-mono text-purple-700 text-xs font-semibold">11.35 - 12.00</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-indigo-50 border border-indigo-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-indigo-900 block">Ekonomi</span>
+                                    <span class="text-indigo-600 text-xs">Ms Debie 4</span>
+                                </div>
+                                <span class="font-mono text-indigo-700 text-xs font-semibold">12.00 - 13.20</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex justify-between items-center hover:border-pink-300 transition-colors">
+                                <div>
+                                    <span class="font-bold text-slate-800 block">Sosiologi</span>
+                                    <span class="text-slate-500 text-xs">Pak Cornel 3</span>
+                                </div>
+                                <span class="font-mono text-slate-600 text-xs font-semibold">13.20 - 14.30</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. RABU -->
+                <div
+                    class="glass-panel bg-white/95 p-6 rounded-3xl border border-pink-200/70 shadow-md space-y-4 hover:border-pink-300 hover:shadow-pink-500/20 transition-all flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-pink-100 pb-3">
+                            <h3 class="font-extrabold text-slate-900 text-lg flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-rose-500 to-pink-600 text-white flex items-center justify-center text-xs shadow-sm font-extrabold">3</div>
+                                <span>Rabu</span>
+                            </h3>
+                            <span
+                                class="text-xs font-mono px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-700 font-extrabold shadow-sm">06:45
+                                - 15:20</span>
+                        </div>
+
+                        <ul class="space-y-2 text-xs sm:text-sm">
+                            <li
+                                class="p-2.5 rounded-xl bg-pink-50/90 border border-pink-200 flex justify-between items-center shadow-sm">
+                                <div>
+                                    <span class="font-bold text-pink-900 block flex items-center gap-1">
+                                        <i class="fa-solid fa-code text-pink-500 text-xs"></i> Informatika
+                                    </span>
+                                    <span class="text-pink-600 text-xs">Pak Yahya 22</span>
+                                </div>
+                                <span class="font-mono text-pink-700 font-bold text-xs">06.45 - 08.15</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-pink-50/80 border border-pink-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-pink-900 block">Mandarin</span>
+                                    <span class="text-pink-600 text-xs">Laoshi Mulyawan 13</span>
+                                </div>
+                                <span class="font-mono text-pink-700 font-semibold text-xs">08.15 - 09.00</span>
+                            </li>
+                            <li
+                                class="p-2 rounded-xl bg-purple-50 border border-purple-200/80 flex justify-between items-center">
+                                <span class="font-bold text-purple-900 text-xs"><i
+                                        class="fa-solid fa-mug-hot text-purple-500 mr-1"></i> Istirahat Pertama</span>
+                                <span class="font-mono text-purple-700 text-xs font-semibold">09.00 - 09.30</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-pink-50/80 border border-pink-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-pink-900 block">Mandarin</span>
+                                    <span class="text-pink-600 text-xs">Laoshi Mulyawan 13</span>
+                                </div>
+                                <span class="font-mono text-pink-700 font-semibold text-xs">09.30 - 10.10</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex justify-between items-center hover:border-pink-300 transition-colors">
+                                <div>
+                                    <span class="font-bold text-slate-800 block">Sosiologi</span>
+                                    <span class="text-slate-500 text-xs">Pak Cornel 3</span>
+                                </div>
+                                <span class="font-mono text-slate-600 text-xs font-semibold">10.10 - 10.50</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-purple-50/80 border border-purple-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-purple-900 block flex items-center gap-1">
+                                        <i class="fa-solid fa-book-open text-purple-500 text-xs"></i> Bahasa Indonesia
+                                    </span>
+                                    <span class="text-purple-600 text-xs">Bu Ruly 17</span>
+                                </div>
+                                <span class="font-mono text-purple-700 font-semibold text-xs">10.50 - 11.30</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-indigo-50 border border-indigo-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-indigo-900 block">Kokurikuler</span>
+                                    <span class="text-indigo-600 text-xs">Ms Debie 4</span>
+                                </div>
+                                <span class="font-mono text-indigo-700 text-xs font-semibold">11.30 - 12.10</span>
+                            </li>
+                            <li
+                                class="p-2 rounded-xl bg-purple-50 border border-purple-200/80 flex justify-between items-center">
+                                <span class="font-bold text-purple-900 text-xs"><i
+                                        class="fa-solid fa-utensils text-purple-500 mr-1"></i> Istirahat Kedua</span>
+                                <span class="font-mono text-purple-700 text-xs font-semibold">12.10 - 12.40</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-amber-50 border border-amber-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-amber-900 block">Sejarah</span>
+                                    <span class="text-amber-600 text-xs">Pak Fajar 2</span>
+                                </div>
+                                <span class="font-mono text-amber-700 text-xs font-semibold">12.40 - 14.00</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-rose-50 border border-rose-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-rose-900 block">Seni Budaya</span>
+                                    <span class="text-rose-600 text-xs">Ms Diyana 5</span>
+                                </div>
+                                <span class="font-mono text-rose-700 text-xs font-semibold">14.00 - 15.20</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- BARIS BAWAH (GRID 4, 5, 6) -->
+
+                <!-- 4. KAMIS -->
+                <div
+                    class="glass-panel bg-white/95 p-6 rounded-3xl border border-pink-200/70 shadow-md space-y-4 hover:border-pink-300 hover:shadow-purple-500/20 transition-all flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-pink-100 pb-3">
+                            <h3 class="font-extrabold text-slate-900 text-lg flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 text-white flex items-center justify-center text-xs shadow-sm font-extrabold">4</div>
+                                <span>Kamis</span>
+                            </h3>
+                            <span
+                                class="text-xs font-mono px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-700 font-extrabold shadow-sm">06:45
+                                - 15:15</span>
+                        </div>
+
+                        <ul class="space-y-2 text-xs sm:text-sm">
+                            <li
+                                class="p-2.5 rounded-xl bg-pink-50/90 border border-pink-200 flex justify-between items-center shadow-sm">
+                                <div>
+                                    <span class="font-bold text-pink-900 block flex items-center gap-1">
+                                        <i class="fa-solid fa-code text-pink-500 text-xs"></i> Informatika
+                                    </span>
+                                    <span class="text-pink-600 text-xs">Pak Yahya 22</span>
+                                </div>
+                                <span class="font-mono text-pink-700 font-bold text-xs">06.45 - 08.15</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex justify-between items-center hover:border-pink-300 transition-colors">
+                                <div>
+                                    <span class="font-bold text-slate-800 block">Matematika Wajib</span>
+                                    <span class="text-slate-500 text-xs">Pak Jefri 10</span>
+                                </div>
+                                <span class="font-mono text-slate-600 text-xs font-semibold">08.15 - 09.00</span>
+                            </li>
+                            <li
+                                class="p-2 rounded-xl bg-purple-50 border border-purple-200/80 flex justify-between items-center">
+                                <span class="font-bold text-purple-900 text-xs"><i
+                                        class="fa-solid fa-mug-hot text-purple-500 mr-1"></i> Istirahat Pertama</span>
+                                <span class="font-mono text-purple-700 text-xs font-semibold">09.00 - 09.30</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex justify-between items-center hover:border-pink-300 transition-colors">
+                                <div>
+                                    <span class="font-bold text-slate-800 block">Matematika Wajib</span>
+                                    <span class="text-slate-500 text-xs">Pak Jefri 10</span>
+                                </div>
+                                <span class="font-mono text-slate-600 text-xs font-semibold">09.30 - 10.15</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-emerald-900 block">Pancasila</span>
+                                    <span class="text-emerald-600 text-xs">Pak Agus 2</span>
+                                </div>
+                                <span class="font-mono text-emerald-700 font-semibold text-xs">10.15 - 11.45</span>
+                            </li>
+                            <li
+                                class="p-2 rounded-xl bg-purple-50 border border-purple-200/80 flex justify-between items-center">
+                                <span class="font-bold text-purple-900 text-xs"><i
+                                        class="fa-solid fa-utensils text-purple-500 mr-1"></i> Makan Bersama</span>
+                                <span class="font-mono text-purple-700 text-xs font-semibold">11.45 - 12.30</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-blue-50 border border-blue-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-blue-900 block">Bahasa Inggris</span>
+                                    <span class="text-blue-600 text-xs">Ms Yuli 27</span>
+                                </div>
+                                <span class="font-mono text-blue-700 font-semibold text-xs">12.30 - 14.35</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-indigo-50 border border-indigo-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-indigo-900 block">Ekonomi</span>
+                                    <span class="text-indigo-600 text-xs">Ms Debie 4</span>
+                                </div>
+                                <span class="font-mono text-indigo-700 text-xs font-semibold">14.35 - 15.15</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5. JUMAT -->
+                <div
+                    class="glass-panel bg-white/95 p-6 rounded-3xl border border-pink-200/70 shadow-md space-y-4 hover:border-pink-300 hover:shadow-pink-500/20 transition-all flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-pink-100 pb-3">
+                            <h3 class="font-extrabold text-slate-900 text-lg flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-pink-500 via-rose-500 to-purple-600 text-white flex items-center justify-center text-xs shadow-sm font-extrabold">5</div>
+                                <span>Jumat</span>
+                            </h3>
+                            <span
+                                class="text-xs font-mono px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-700 font-extrabold shadow-sm">07:15
+                                - 14:30</span>
+                        </div>
+
+                        <ul class="space-y-2 text-xs sm:text-sm">
+                            <li
+                                class="p-2.5 rounded-xl bg-indigo-50 border border-indigo-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-indigo-900 block">PKWU</span>
+                                    <span class="text-indigo-600 text-xs">Ms Debie 4</span>
+                                </div>
+                                <span class="font-mono text-indigo-700 font-semibold text-xs">07.15 - 08.45</span>
+                            </li>
+                            <li
+                                class="p-2 rounded-xl bg-purple-50 border border-purple-200/80 flex justify-between items-center">
+                                <span class="font-bold text-purple-900 text-xs"><i
+                                        class="fa-solid fa-mug-hot text-purple-500 mr-1"></i> Istirahat Pertama</span>
+                                <span class="font-mono text-purple-700 text-xs font-semibold">08.45 - 09.15</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-emerald-900 block">PJOK</span>
+                                    <span class="text-emerald-600 text-xs">Pak Ian 20</span>
+                                </div>
+                                <span class="font-mono text-emerald-700 font-semibold text-xs">09.15 - 10.45</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-amber-50 border border-amber-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-amber-900 block">BK</span>
+                                    <span class="text-amber-600 text-xs">Ms Katarina 11</span>
+                                </div>
+                                <span class="font-mono text-amber-700 font-semibold text-xs">10.45 - 11.30</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-pink-50/80 border border-pink-200/80 flex justify-between items-center">
+                                <span class="font-bold text-pink-900 text-xs flex items-center gap-1"><i
+                                        class="fa-solid fa-hands-praying text-pink-500 mr-1"></i> Jumat Ibadah</span>
+                                <span class="font-mono text-pink-700 text-xs font-semibold">11.30 - 12.30</span>
+                            </li>
+                            <li
+                                class="p-2 rounded-xl bg-purple-50 border border-purple-200/80 flex justify-between items-center">
+                                <span class="font-bold text-purple-900 text-xs"><i
+                                        class="fa-solid fa-utensils text-purple-500 mr-1"></i> Istirahat Kedua</span>
+                                <span class="font-mono text-purple-700 text-xs font-semibold">12.30 - 13.00</span>
+                            </li>
+                            <li
+                                class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200/80 flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-emerald-900 block">Geografi</span>
+                                    <span class="text-emerald-600 text-xs">Pak Fajar 14</span>
+                                </div>
+                                <span class="font-mono text-emerald-700 font-semibold text-xs">13.00 - 14.30</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-16 border-t border-slate-200/80 bg-white/80 backdrop-blur-md py-8">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+            <p class="text-xs text-slate-500 font-medium">&copy; 2026 Shelly Callista | SMA Cinta Kasih Tzu Chi</p>
+            <p class="text-xs text-slate-400">Developer Hub & Portofolio Digital</p>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: POST DETAIL VIEWER -->
+    <div id="post-detail-modal"
+        class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-white w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col animate-scaleUp">
+
+            <!-- Modal Header -->
+            <div class="px-6 py-5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span id="modal-category-badge"
+                        class="px-3 py-1 rounded-full text-xs font-bold bg-pink-100 text-pink-700">Informatika</span>
+                    <span id="modal-date" class="text-xs text-slate-500 font-mono"><i class="fa-solid fa-clock"></i> 05
+                        Ags 2026</span>
+                </div>
+                <button onclick="closePostDetailModal()"
+                    class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 hover:bg-slate-300 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-6 flex-grow">
+                <h2 id="modal-title" class="text-2xl font-extrabold text-slate-900">Judul Posting Tugas</h2>
+
+                <div id="modal-tags" class="flex flex-wrap gap-2">
+                    <!-- Dynamic tags -->
+                </div>
+
+                <div class="prose max-w-none text-slate-700 leading-relaxed text-sm sm:text-base space-y-4"
+                    id="modal-content">
+                </div>
+
+                <div id="modal-code-container" class="hidden space-y-2">
+                    <div
+                        class="flex items-center justify-between text-xs font-mono text-slate-400 bg-slate-900 px-4 py-2 rounded-t-xl">
+                        <span><i class="fa-solid fa-code"></i> Source Code Sample</span>
+                        <button onclick="copyCodeSnippet()" class="hover:text-white transition-colors"><i
+                                class="fa-regular fa-copy"></i> Salin Kode</button>
+                    </div>
+                    <pre
+                        class="bg-slate-950 text-pink-300 p-4 rounded-b-xl overflow-x-auto text-xs font-mono border border-slate-800"><code id="modal-code-snippet">// Code goes here</code></pre>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+                <div class="text-xs text-slate-500">
+                    Dipublikasikan oleh: <span class="font-bold text-slate-800">Siswa Web Developer</span>
+                </div>
+                <button onclick="closePostDetailModal()"
+                    class="px-5 py-2 rounded-xl bg-slate-900 text-white font-semibold text-sm hover:bg-slate-800 transition-colors">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: CREATE / PUBLISH NEW POST -->
+    <div id="create-post-modal"
+        class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col animate-scaleUp">
+
+            <!-- Modal Header -->
+            <div class="px-6 py-4 bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 text-white flex items-center justify-between">
+                <h3 class="font-bold text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square"></i> Posting Tugas Sekolah Baru
+                </h3>
+                <button onclick="closeCreatePostModal()"
+                    class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Form Body -->
+            <form id="form-create-post" onsubmit="handleCreatePost(event)"
+                class="p-6 overflow-y-auto space-y-4 flex-grow text-sm">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Mata Pelajaran / Kategori *</label>
+                    <select id="input-category" required
+                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-pink-500 focus:outline-none font-semibold text-slate-800">
+                        <option value="Informatika">Informatika (Web, Code, IT)</option>
+                        <option value="Bahasa Indonesia">Bahasa Indonesia (Esai, Sastra, Teks)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Judul Tugas *</label>
+                    <input type="text" id="input-title" required
+                        placeholder="Contoh: Membuat Landing Page HTML & CSS atau Teks Eksposisi"
+                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-pink-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Tag / Kata Kunci (pisahkan dengan koma)</label>
+                    <input type="text" id="input-tags" placeholder="Contoh: HTML, Tailwind, Tugas 1, Resensi"
+                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-pink-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Ringkasan Singkat (Muncul di Kartu) *</label>
+                    <input type="text" id="input-summary" required
+                        placeholder="Ringkasan 1-2 kalimat mengenai isi tugas ini."
+                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-pink-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Isi Lengkap Tugas *</label>
+                    <textarea id="input-content" rows="4" required
+                        placeholder="Tuliskan penjelasan lengkap, pembahasan, atau hasil pekerjaan tugas di sini..."
+                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-pink-500 focus:outline-none"></textarea>
+                </div>
+
+                <div id="form-code-field">
+                    <label class="block font-bold text-slate-700 mb-1">Kode / Script Lampiran (Opsional)</label>
+                    <textarea id="input-code" rows="3"
+                        placeholder="// Tempatkan sampel kode HTML, CSS, JS, atau algoritma di sini jika ada"
+                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-900 text-pink-300 font-mono text-xs focus:outline-none"></textarea>
+                </div>
+
+                <!-- Modal Actions -->
+                <div class="pt-4 flex items-center justify-end gap-3 border-t border-slate-200">
+                    <button type="button" onclick="closeCreatePostModal()"
+                        class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-semibold hover:bg-slate-100 transition-colors">
+                        Batal
+                    </button>
+                    <button type="submit"
+                        class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 text-white font-bold shadow-pink-500/30 shadow-md hover:opacity-90 transition-opacity">
+                        <i class="fa-solid fa-paper-plane"></i> Publikasikan Postingan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+    <!-- JavaScript App Script -->
+    <script src="app.js"></script>
+</body>
+
+</html>
